@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class Tuote {
+public class Product {
 
     @Id
     private Long id;
@@ -13,9 +13,9 @@ public class Tuote {
     private double price;
     private String isbn;
 
-    public Tuote () {}
+    public Product () {}
 
-    public Tuote(Long id, String title, double price, String isbn) {
+    public Product(Long id, String title, double price, String isbn) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -56,7 +56,7 @@ public class Tuote {
 
     @Override
     public String toString() {
-        return "Tuote [id=" + id + ", title=" + title + ", price=" + price + ", isbn=" + isbn + "]";
+        return "Product [id=" + id + ", title=" + title + ", price=" + price + ", isbn=" + isbn + "]";
     }
 
     

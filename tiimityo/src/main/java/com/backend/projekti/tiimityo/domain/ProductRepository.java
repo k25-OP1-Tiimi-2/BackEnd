@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 
 
 
-public interface TuoteRepository extends CrudRepository<Tuote, Long> {
-    List<Tuote> findByTitle(String title);
+public interface ProductRepository extends CrudRepository<Product, Long> {
+    List<Product> findByTitle(String title);
 }
