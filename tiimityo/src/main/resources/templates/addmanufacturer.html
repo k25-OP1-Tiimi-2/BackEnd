@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Add manufacturer</title>
+</head>
+
+<body>
+    <h1>Add manufacturer</h1>
+    <div>
+        <form th:object="${manufacturer}" th:action="@{save}" method="post">
+            <label for="name">Name:</label>
+            <input type="name" id="name" th:field="*{name}" />
+        </form>
+    </div>
+</body>
+
+</html>
