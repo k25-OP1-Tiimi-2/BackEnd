@@ -13,7 +13,6 @@ public class Product {
 
     private String title;
     private double price;
-    private String isbn;
     private String type;
     private String color;
     private String size;
@@ -26,12 +25,11 @@ public class Product {
     public Product () {}
 
 
-    public Product(Long id, String title, double price, String isbn, String type, String color, String size,
+    public Product(String title, double price, String type, String color, String size,
             Manufacturer manufacturer) {
-        this.id = id;
+        super();
         this.title = title;
         this.price = price;
-        this.isbn = isbn;
         this.type = type;
         this.color = color;
         this.size = size;
@@ -67,17 +65,6 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
 
     public String getType() {
         return type;
@@ -121,7 +108,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product [id=" + id + ", title=" + title + ", price=" + price + ", isbn=" + isbn + ", type=" + type
+        return "Product [id=" + id + ", title=" + title + ", price=" + price + ", type=" + type
                 + ", color=" + color + ", size=" + size + ", manufacturer=" + manufacturer + "]";
     }
 
