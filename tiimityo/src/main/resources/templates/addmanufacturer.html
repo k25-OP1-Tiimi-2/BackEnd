@@ -9,11 +9,23 @@
 <body>
     <h1>Add manufacturer</h1>
     <div>
-        <form th:object="${manufacturer}" th:action="@{save}" method="post">
+        <form th:object="${manufacturer}" th:action="@{/savemanufacturer}" method="post">
             <label for="name">Name:</label>
-            <input type="name" id="name" th:field="*{name}" />
+            <input type="text" id="name" th:field="*{name}" />
+            <input type="submit" value="save" />
         </form>
     </div>
 </body>
 
 </html>
+
+<!-- Controlleriin jotenki näin sit:
+
+ @RequestMapping("/addmanufacturer")
+ public String addManu(Model manu) {
+ manu.addAttribute("manufacturer", new Manufacturer());
+ manu.addAttribute("manufacturers", mrepository.findAll());
+ return "addmanufacturer";
+
+ }
+ -->
