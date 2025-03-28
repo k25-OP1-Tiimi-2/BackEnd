@@ -22,6 +22,13 @@ public class Manufacturer {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufacturer")
     private List<Product> products;
 
+    public Manufacturer() {}
+
+    public Manufacturer(String name) {
+        super();
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
