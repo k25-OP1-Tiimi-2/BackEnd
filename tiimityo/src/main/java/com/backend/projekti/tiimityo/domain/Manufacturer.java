@@ -22,7 +22,8 @@ public class Manufacturer {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufacturer")
     private List<Product> products;
 
-    public Manufacturer() {}
+    public Manufacturer() {
+    }
 
     public Manufacturer(String name) {
         super();
@@ -55,7 +56,7 @@ public class Manufacturer {
 
     @Override
     public String toString() {
-        return "Manufacturer [name=" + name + ", products=" + products + "]";
+        return "Manufacturer [id=" + id + ", name=" + name + "]";
     }
 
 }
