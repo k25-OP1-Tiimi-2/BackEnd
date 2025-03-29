@@ -3,16 +3,16 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Add manufacturer</title>
+    <title>Lisää valmistaja</title>
 </head>
 
 <body>
-    <h1>Add manufacturer</h1>
+    <h1>Lisää valmistaja</h1>
     <div>
         <form th:object="${manufacturer}" th:action="@{/savemanufacturer}" method="post">
-            <label for="name">Name:</label>
+            <label for="name">Nimi:</label>
             <input type="text" id="name" th:field="*{name}" />
-            <input type="submit" value="save" />
+            <input type="submit" value="Tallenna" />
         </form>
     </div>
 </body>
