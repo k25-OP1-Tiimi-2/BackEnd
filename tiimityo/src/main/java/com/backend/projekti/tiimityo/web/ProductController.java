@@ -44,6 +44,13 @@ public class ProductController {
         return "redirect:/productlist";
     }
 
+    // Delete product:
+    @GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        prepository.deleteById(id);
+        return "redirect:/productlist";
+    }
+
     // Add manufacturer:
     @RequestMapping("/addmanufacturer")
     public String addManufacturer(Model manu) {

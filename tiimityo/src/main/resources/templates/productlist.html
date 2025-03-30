@@ -30,6 +30,7 @@
 				<td th:text="${product.color}"></td>
 				<td th:text="${product.size}"></td>
 				<td><a th:href="@{/edit/{id}(id=${product.id})}">Muokkaa</a></td>
+				<td><a th:href="@{/delete/{id}(id=${product.id})}">Poista</a></td>
 			</tr>
 		</table>
 		<p><a th:href="@{/addmanufacturer}">Lisää valmistaja</a></p>
