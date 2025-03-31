@@ -65,4 +65,19 @@ public class ProductController {
         mrepository.save(manufacturer);
         return "redirect:/productlist";
     }
+
+    //Add product:
+    @RequestMapping("/addproduct")
+    public String addProduct(Model model) {
+        model.addAttribute("product", new Product());
+        model.addAttribute("manufacturers", mrepository.findAll());
+        return "addproduct";
+    }
+
+    // Save product:
+    @PostMapping("/saveproduct")
+    public String saveProduct(Product product) {
+        prepository.save(product);
+        return "redirect:/productlist";
+    }
 }
