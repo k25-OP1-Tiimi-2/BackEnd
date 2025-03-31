@@ -24,9 +24,8 @@ public class Product {
     @JoinColumn(name = "manuid")
     private Manufacturer manufacturer;
 
-
-    public Product () {}
-
+    public Product() {
+    }
 
     public Product(String title, double price, String type, String color, String size,
             Manufacturer manufacturer) {
@@ -39,31 +38,25 @@ public class Product {
         this.manufacturer = manufacturer;
     }
 
-
     public Long getId() {
         return id;
     }
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-
     public String getTitle() {
         return title;
     }
-
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-
     public double getPrice() {
         return price;
     }
-
 
     public void setPrice(double price) {
         this.price = price;
@@ -73,41 +66,33 @@ public class Product {
         return type;
     }
 
-
     public void setType(String type) {
         this.type = type;
     }
-
 
     public String getColor() {
         return color;
     }
 
-
     public void setColor(String color) {
         this.color = color;
     }
-
 
     public String getSize() {
         return size;
     }
 
-
     public void setSize(String size) {
         this.size = size;
     }
-
 
     public Manufacturer getManufacturer() {
         return manufacturer;
     }
 
-
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
-
 
     @Override
     public String toString() {
@@ -115,6 +100,4 @@ public class Product {
                 + ", color=" + color + ", size=" + size + ", manufacturer=" + manufacturer + "]";
     }
 
- 
-    
 }

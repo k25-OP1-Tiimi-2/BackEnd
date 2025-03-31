@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.backend.projekti.tiimityo.domain.Manufacturer;
 import com.backend.projekti.tiimityo.domain.ManufacturerRepository;
@@ -37,8 +38,8 @@ public class ProductController {
         return "editproduct";
     }
 
-    // Save product:
-    @PostMapping("/saveproduct")
+    // Saves the product in editproduct.html:
+    @PostMapping("/save")
     public String save(Product product) {
         prepository.save(product);
         return "redirect:/productlist";
@@ -75,9 +76,20 @@ public class ProductController {
     }
 
     // Save product:
+    // This method is used to save a new product to the database.
     @PostMapping("/saveproduct")
-    public String saveProduct(Product product) {
-        prepository.save(product);
+    public String saveProduct(@RequestParam String title,
+            @RequestParam double price,
+            @RequestParam String type,
+            @RequestParam String color,
+            @RequestParam String size,
+            @RequestParam Long manufacturerId) {
+
+        Manufacturer manufacturer = mrepository.findById(manufacturerId).orElse(null);
+
+        Product product = new Product(title, price, type, color, size, manufacturer);
+        prepository.save(product); // Saves the product to the database
         return "redirect:/productlist";
     }
+
 }

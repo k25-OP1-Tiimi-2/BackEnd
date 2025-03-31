@@ -1,40 +1,39 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Tuotteet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link type="text/css" rel="stylesheet" />
+  </head>
 
-<head>
-	<title>Tuotteet</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link type="text/css" rel="stylesheet" />
-</head>
-
-<body>
-	<div>
-		<div>
-			<h1>Tuotteet</h1>
-		</div>
-		<table>
-			<tr>
-				<th>Tuote</th>
-				<th>Valmistaja</th>
-				<th>Hinta</th>
-				<th>Tyyppi</th>
-				<th>Väri</th>
-				<th>Koko</th>
-			</tr>
-			<tr th:each="product : ${products}">
-				<td th:text="${product.title}"></td>
-				<td th:text="${product.manufacturer.name}"></td>
-				<td th:text="${product.price}"></td>
-				<td th:text="${product.type}"></td>
-				<td th:text="${product.color}"></td>
-				<td th:text="${product.size}"></td>
-				<td><a th:href="@{/edit/{id}(id=${product.id})}">Muokkaa</a></td>
-				<td><a th:href="@{/delete/{id}(id=${product.id})}">Poista</a></td>
-			</tr>
-		</table>
-		<p><a th:href="@{/addmanufacturer}">Lisää valmistaja</a></p>
-	</div>
-</body>
-
+  <body>
+    <div>
+      <div>
+        <h1>Tuotteet</h1>
+      </div>
+      <table>
+        <tr>
+          <th>Tuote</th>
+          <th>Valmistaja</th>
+          <th>Hinta</th>
+          <th>Tyyppi</th>
+          <th>Väri</th>
+          <th>Koko</th>
+        </tr>
+        <tr th:each="product : ${products}">
+          <td th:text="${product.title}"></td>
+          <td th:text="${product.manufacturer.name}"></td>
+          <td th:text="${product.price}"></td>
+          <td th:text="${product.type}"></td>
+          <td th:text="${product.color}"></td>
+          <td th:text="${product.size}"></td>
+          <td><a th:href="@{/edit/{id}(id=${product.id})}">Muokkaa</a></td>
+          <td><a th:href="@{/delete/{id}(id=${product.id})}">Poista</a></td>
+        </tr>
+      </table>
+      <p><a th:href="@{/addmanufacturer}">Lisää valmistaja</a></p>
+      <a th:href="@{/addproduct}">Lisää tuote</a>
+    </div>
+  </body>
 </html>
