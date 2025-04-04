@@ -1,5 +1,7 @@
 package com.backend.projekti.tiimityo.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,7 +69,17 @@ public class ProductController {
         return "redirect:/productlist";
     }
 
-    //Add product:
+    // Go to manufacturer's page:
+    @GetMapping("/manufacturer/{id}")
+    public String getManufacturer(@PathVariable Long id, Model model) {
+        Manufacturer manufacturer = mrepository.findById(id).orElse(null);
+        List<Product> products = prepository.findByManufacturer(manufacturer);
+        model.addAttribute("manufacturer", manufacturer);
+        model.addAttribute("products", products);
+        return "manufacturerpage";
+    }
+
+    // Add product:
     @RequestMapping("/addproduct")
     public String addProduct(Model model) {
         model.addAttribute("product", new Product());
