@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Valmistaja</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1>Valmistajan <a th:text="${manufacturer.name}"></a> tuotteet</h1>
+        </div>
+        <table>
+            <tr>
+                <th>Tuote</th>
+                <th>Hinta</th>
+                <th>Tyyppi</th>
+                <th>Väri</th>
+                <th>Koko</th>
+            </tr>
+
+            <tr th:each="product : ${products}">
+                <td th:text="${product.title}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.type}"></td>
+                <td th:text="${product.color}"></td>
+                <td th:text="${product.size}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
