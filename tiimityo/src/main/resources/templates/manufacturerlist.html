@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Valmistajat</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1>Valmistajat</h1>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Valmistaja</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr th:each="manufacturer : ${manufacturers}">
+                    <td>
+                        <a th:href="@{/manufacturer/{id}(id=${manufacturer.id})}" th:text="${manufacturer.name}">
+                        </a>
+                    </td>
+
+                    <td>
+                        <a th:href="@{/delete/{id}(id=${manufacturer.id})}">Poista</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/addmanufacturer}">Lisää valmistaja</a>
+    </div>
+</body>
+
+</html>

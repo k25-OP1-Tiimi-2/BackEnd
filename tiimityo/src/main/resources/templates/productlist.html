@@ -25,9 +25,7 @@
       <tr th:each="product : ${products}">
         <td th:text="${product.title}"></td>
 
-        <td>
-          <a th:href="@{/manufacturer/{id}(id=${product.manufacturer.id})}" th:text="${product.manufacturer.name}">
-          </a>
+        <td th:text="${product.manufacturer.name}">
         </td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.type}"></td>
@@ -38,7 +36,7 @@
       </tr>
     </table>
     <a th:href="@{/addproduct}">Lisää tuote</a><br>
-    <a th:href="@{/addmanufacturer}">Lisää valmistaja</a>
+    <a th:href="@{/manufacturerlist}">Valmistajat</a>
   </div>
 </body>
 

@@ -66,7 +66,14 @@ public class ProductController {
     @PostMapping("/savemanufacturer")
     public String saveManufacturer(Manufacturer manufacturer) {
         mrepository.save(manufacturer);
-        return "redirect:/productlist";
+        return "redirect:/manufacturerlist";
+    }
+
+    // Get all manufacturers:
+    @GetMapping("/manufacturerlist")
+    public String getManufacturerList(Model model) {
+        model.addAttribute("manufacturers", mrepository.findAll());
+        return "manufacturerlist";
     }
 
     // Go to manufacturer's page:
