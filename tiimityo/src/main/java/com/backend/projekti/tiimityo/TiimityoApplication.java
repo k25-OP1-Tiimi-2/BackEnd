@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.backend.projekti.tiimityo.domain.AppUser;
+import com.backend.projekti.tiimityo.domain.AppUserRepository;
 import com.backend.projekti.tiimityo.domain.Manufacturer;
 import com.backend.projekti.tiimityo.domain.ManufacturerRepository;
 import com.backend.projekti.tiimityo.domain.Product;
@@ -22,7 +24,7 @@ public class TiimityoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner productDemo(ProductRepository prepository, ManufacturerRepository mrepository) {
+	public CommandLineRunner productDemo(ProductRepository prepository, ManufacturerRepository mrepository, AppUserRepository appUserRepository) {
 		return(args) -> {
 			log.info("saving a couple of manufacturers");
 			Manufacturer rukka = new Manufacturer("Rukka");
@@ -36,6 +38,9 @@ public class TiimityoApplication {
 			prepository.save(new Product("Talvitakki", 53.90, "Vaate", "Violetti", "M", rukka));
 			prepository.save(new Product("Sadetakki", 44.90, "Vaate", "Keltainen", "L", pomppa));
 			prepository.save(new Product("Neule", 21.99, "Vaate", "Vihreä", "S", feelActive));
+
+			AppUser user1 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			appUserRepository.save(user1);
 		};
 	}
 
