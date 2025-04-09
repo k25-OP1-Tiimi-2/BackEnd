@@ -62,6 +62,13 @@ public class ProductController {
         return "addmanufacturer";
     }
 
+    // Delete manufacturer:
+    @GetMapping("/deletemanufacturer/{id}")
+    public String deleteManufacturer(@PathVariable Long id) {
+        mrepository.deleteById(id);
+        return "redirect:/manufacturerlist";
+    }
+
     // Save manufacturer:
     @PostMapping("/savemanufacturer")
     public String saveManufacturer(Manufacturer manufacturer) {
