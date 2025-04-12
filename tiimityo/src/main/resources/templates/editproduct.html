@@ -35,8 +35,15 @@
         <label for="color">Väri:</label>
         <input type="text" id="color" th:field="*{color}" /><br>
 
-        <label for="size">Koko:</label>
-        <input type="text" id="size" th:field="*{size}" /><br>
+        <div>
+            <label for="size">Koko:</label>
+            <select name="size" id="size" th:field="*{size}">
+                <option value=""></option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+            </select>
+        </div>
 
         <input type="submit" class="btn btn-success" value="Tallenna"></input>
     </form>

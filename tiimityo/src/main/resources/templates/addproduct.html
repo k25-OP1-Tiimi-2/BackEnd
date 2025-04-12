@@ -22,8 +22,15 @@
       </select>
       <label for="color">Väri:</label>
       <input type="text" id="color" th:field="*{color}" />
-      <label for="size">Koko:</label>
-      <input type="text" id="size" th:field="*{size}" />
+      <div>
+        <label for="size">Koko:</label>
+        <select name="size" id="size" th:field="*{size}">
+          <option value=""></option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+        </select>
+      </div>
 
       <label for="manufacturer">Valmistaja:</label>
       <select id="manufacturer" name="manufacturerId">
