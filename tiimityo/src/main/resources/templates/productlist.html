@@ -28,7 +28,7 @@
         <td th:text="${product.manufacturer.name}">
         </td>
         <td th:text="${product.price}"></td>
-        <td th:text="${product.type}"></td>
+        <td th:text="${product.productType.name}"></td>
         <td th:text="${product.color}"></td>
         <td th:text="${product.size}"></td>
         <td><a th:href="@{/edit/{id}(id=${product.id})}">Muokkaa</a></td>

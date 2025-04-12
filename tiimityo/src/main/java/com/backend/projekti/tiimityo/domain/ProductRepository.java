@@ -11,5 +11,5 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     List<Product> findByManufacturer(Manufacturer manufacturer);
 
-    List<Product> findByType(@Param("type") String type);
+    List<Product> findByProductType(@Param("type") ProductType productType);
 }

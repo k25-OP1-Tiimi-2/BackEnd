@@ -15,6 +15,8 @@ import com.backend.projekti.tiimityo.domain.Manufacturer;
 import com.backend.projekti.tiimityo.domain.ManufacturerRepository;
 import com.backend.projekti.tiimityo.domain.Product;
 import com.backend.projekti.tiimityo.domain.ProductRepository;
+import com.backend.projekti.tiimityo.domain.ProductType;
+import com.backend.projekti.tiimityo.domain.ProductTypeRepository;
 
 @Controller
 public class ProductController {
@@ -23,12 +25,15 @@ public class ProductController {
     private ProductRepository prepository;
     @Autowired
     private ManufacturerRepository mrepository;
+    @Autowired
+    private ProductTypeRepository trepository;
 
     // Get all products:
     @GetMapping("/productlist")
     public String getProductList(Model model) {
         model.addAttribute("products", prepository.findAll());
         model.addAttribute("manufacturers", mrepository.findAll());
+        model.addAttribute("productTypes", trepository.findAll());
         return "productlist";
     }
 
@@ -37,6 +42,7 @@ public class ProductController {
     public String editProduct(@PathVariable("id") Long productId, Model model) {
         model.addAttribute("product", prepository.findById(productId));
         model.addAttribute("manufacturers", mrepository.findAll());
+        model.addAttribute("productTypes", trepository.findAll());
         return "editproduct";
     }
 
@@ -98,6 +104,7 @@ public class ProductController {
     public String addProduct(Model model) {
         model.addAttribute("product", new Product());
         model.addAttribute("manufacturers", mrepository.findAll());
+        model.addAttribute("productTypes", trepository.findAll());
         return "addproduct";
     }
 
@@ -106,14 +113,15 @@ public class ProductController {
     @PostMapping("/saveproduct")
     public String saveProduct(@RequestParam String title,
             @RequestParam double price,
-            @RequestParam String type,
+            @RequestParam Long productTypeId,
             @RequestParam String color,
             @RequestParam String size,
             @RequestParam Long manufacturerId) {
 
         Manufacturer manufacturer = mrepository.findById(manufacturerId).orElse(null);
+        ProductType productType = trepository.findById(productTypeId).orElse(null);
 
-        Product product = new Product(title, price, type, color, size, manufacturer);
+        Product product = new Product(title, price, productType, color, size, manufacturer);
         prepository.save(product); // Saves the product to the database
         return "redirect:/productlist";
     }

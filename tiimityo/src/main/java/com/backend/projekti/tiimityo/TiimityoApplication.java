@@ -1,5 +1,7 @@
 package com.backend.projekti.tiimityo;
 
+import java.lang.reflect.Type;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +15,8 @@ import com.backend.projekti.tiimityo.domain.Manufacturer;
 import com.backend.projekti.tiimityo.domain.ManufacturerRepository;
 import com.backend.projekti.tiimityo.domain.Product;
 import com.backend.projekti.tiimityo.domain.ProductRepository;
+import com.backend.projekti.tiimityo.domain.ProductType;
+import com.backend.projekti.tiimityo.domain.ProductTypeRepository;
 
 @SpringBootApplication
 public class TiimityoApplication {
@@ -24,8 +28,9 @@ public class TiimityoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner productDemo(ProductRepository prepository, ManufacturerRepository mrepository, AppUserRepository appUserRepository) {
-		return(args) -> {
+	public CommandLineRunner productDemo(ProductRepository prepository, ManufacturerRepository mrepository,
+			AppUserRepository appUserRepository, ProductTypeRepository trepository) {
+		return (args) -> {
 			log.info("saving a couple of manufacturers");
 			Manufacturer rukka = new Manufacturer("Rukka");
 			mrepository.save(rukka);
@@ -34,12 +39,21 @@ public class TiimityoApplication {
 			Manufacturer feelActive = new Manufacturer("Feel Active");
 			mrepository.save(feelActive);
 
-			log.info("saving a couple of products");
-			prepository.save(new Product("Talvitakki", 53.90, "Vaate", "Violetti", "M", rukka));
-			prepository.save(new Product("Sadetakki", 44.90, "Vaate", "Keltainen", "L", pomppa));
-			prepository.save(new Product("Neule", 21.99, "Vaate", "Vihreä", "S", feelActive));
+			log.info("saving types");
+			ProductType vaate = new ProductType("Vaate");
+			trepository.save(vaate);
+			ProductType ruoka = new ProductType("Ruoka");
+			trepository.save(ruoka);
+			ProductType lelu = new ProductType("Lelu");
+			trepository.save(lelu);
 
-			AppUser user1 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			log.info("saving a couple of products");
+			prepository.save(new Product("Talvitakki", 53.90, vaate, "Violetti", "M", rukka));
+			prepository.save(new Product("Sadetakki", 44.90, vaate, "Keltainen", "L", pomppa));
+			prepository.save(new Product("Neule", 21.99, vaate, "Vihreä", "S", feelActive));
+
+			AppUser user1 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C",
+					"ADMIN");
 			appUserRepository.save(user1);
 		};
 	}

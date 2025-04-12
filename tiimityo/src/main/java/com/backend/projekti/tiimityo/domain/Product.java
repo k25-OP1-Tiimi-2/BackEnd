@@ -16,7 +16,6 @@ public class Product {
 
     private String title;
     private double price;
-    private String type;
     private String color;
     private String size;
 
@@ -24,15 +23,19 @@ public class Product {
     @JoinColumn(name = "manuid")
     private Manufacturer manufacturer;
 
+    @ManyToOne
+    @JoinColumn(name = "productTypeid")
+    private ProductType productType;
+
     public Product() {
     }
 
-    public Product(String title, double price, String type, String color, String size,
+    public Product(String title, double price, ProductType type, String color, String size,
             Manufacturer manufacturer) {
         super();
         this.title = title;
         this.price = price;
-        this.type = type;
+        this.productType = type;
         this.color = color;
         this.size = size;
         this.manufacturer = manufacturer;
@@ -62,12 +65,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getType() {
-        return type;
+    public ProductType getProductType() {
+        return productType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setProductType(ProductType producttype) {
+        this.productType = producttype;
     }
 
     public String getColor() {
@@ -96,7 +99,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product [id=" + id + ", title=" + title + ", price=" + price + ", type=" + type
+        return "Product [id=" + id + ", title=" + title + ", price=" + price + ", type=" + productType
                 + ", color=" + color + ", size=" + size + ", manufacturer=" + manufacturer + "]";
     }
 
