@@ -12,6 +12,8 @@
         <form th:object="${manufacturer}" th:action="@{/savemanufacturer}" method="post">
             <label for="name">Nimi:</label>
             <input type="text" id="name" th:field="*{name}" />
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+            
             <input type="submit" value="Tallenna" />
         </form>
     </div>
