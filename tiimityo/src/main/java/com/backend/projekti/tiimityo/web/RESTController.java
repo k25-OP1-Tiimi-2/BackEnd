@@ -52,14 +52,14 @@ public class RESTController {
     }
     
     // REST update a product
-    @PutMapping("product/{id}")
+    @PutMapping("products/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
         Product updatedProduct = productService.updateProduct(id, product);
         return ResponseEntity.ok(updatedProduct);
     }
 
     // REST delete a product
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/products/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
         boolean deleted = productService.deleteProduct(id);
         if(deleted) {
