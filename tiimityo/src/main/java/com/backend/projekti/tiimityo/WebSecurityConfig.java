@@ -12,7 +12,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.config.Customizer;
 
+import org.springframework.security.config.Customizer;
 import java.util.List;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
@@ -26,14 +28,17 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(antMatcher("/css/**")).permitAll() // Enable css when logged out
+                        .requestMatchers(antMatcher("/rest/**")).permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formlogin -> formlogin
                         .defaultSuccessUrl("/productlist", true)
                         .permitAll())
                 .logout(logout -> logout
-                        .permitAll());
+                        .permitAll())
+                .csrf(csrf -> csrf.disable());
         return http.build();
     }
 

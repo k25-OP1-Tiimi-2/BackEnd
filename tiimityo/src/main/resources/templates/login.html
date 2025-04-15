@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h2>Custom Login Page</h2>
+<form method="post" action="/login">
+    <input type="text" name="username" placeholder="Username" />
+    <input type="password" name="password" placeholder="Password" />
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+    <button type="submit">Login</button>
+</form>
+</body>
+</html>
