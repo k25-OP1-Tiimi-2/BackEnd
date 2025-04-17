@@ -33,6 +33,8 @@ public class WebSecurityConfig {
                         .requestMatchers(antMatcher("/css/**")).permitAll() // Enable css when logged out
                         .requestMatchers(antMatcher("/rest/**")).permitAll()
                         .anyRequest().authenticated())
+                        .headers(headers -> headers.frameOptions(frameOptions -> frameOptions
+                        .disable())) // for h2console
                 .formLogin(formlogin -> formlogin
                         .defaultSuccessUrl("/productlist", true)
                         .permitAll())

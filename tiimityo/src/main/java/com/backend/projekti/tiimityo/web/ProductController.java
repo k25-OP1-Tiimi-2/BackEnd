@@ -118,19 +118,38 @@ public class ProductController {
     // Save product:
     // This method is used to save a new product to the database.
     @PostMapping("/saveproduct")
-    public String saveProduct(@RequestParam String title,
-            @RequestParam double price,
-            @RequestParam Long productTypeId,
-            @RequestParam String color,
-            @RequestParam String size,
-            @RequestParam Long manufacturerId) {
+public String saveProduct(@RequestParam String title,
+                          @RequestParam double price,
+                          @RequestParam Long productTypeId,
+                          @RequestParam String color,
+                          @RequestParam String size,
+                          @RequestParam Long manufacturerId,
+                          Model model) {
 
-        Manufacturer manufacturer = mrepository.findById(manufacturerId).orElse(null);
-        ProductType productType = trepository.findById(productTypeId).orElse(null);
+    boolean hasErrors = false;
 
-        Product product = new Product(title, price, productType, color, size, manufacturer);
-        prepository.save(product); // Saves the product to the database
-        return "redirect:/productlist";
+    if (title == null || title.trim().isEmpty()) {
+        model.addAttribute("errorTitle", "Tuotteen nimi on pakollinen");
+        hasErrors = true;
     }
+    if (price <= 0) {
+        model.addAttribute("errorPrice", "Hinnan on oltava suurempi kuin 0");
+        hasErrors = true;
+    }
+
+    if (hasErrors) {
+        model.addAttribute("productTypes", trepository.findAll());
+        model.addAttribute("manufacturers", mrepository.findAll());
+        return "addproduct";
+    }
+
+    Manufacturer manufacturer = mrepository.findById(manufacturerId).orElse(null);
+    ProductType productType = trepository.findById(productTypeId).orElse(null);
+
+    Product product = new Product(title, price, productType, color, size, manufacturer);
+    prepository.save(product);
+
+    return "redirect:/productlist";
+}
 
 }

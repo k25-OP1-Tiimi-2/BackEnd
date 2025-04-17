@@ -9,33 +9,36 @@
 <body>
   <h1>Lisää Tuote</h1>
   <div>
-    <form th:object="${product}" th:action="@{/saveproduct}" method="post">
+    <form action="/saveproduct" method="post">
       <label for="title">Tuotteen nimi:</label>
-      <input type="text" id="title" th:field="*{title}" />
+      <input type="text" id="title" name="title" />
+      <div th:if="${errorTitle}" style="color:red;" th:text="${errorTitle}"></div>
+    
       <label for="price">Hinta:</label>
-      <input type="text" id="price" th:field="*{price}" />
-
+      <input type="text" id="price" name="price" />
+      <div th:if="${errorPrice}" style="color:red;" th:text="${errorPrice}"></div>
+    
       <label for="productType">Tuotetyyppi:</label>
-      <select id="productType" name="productTypeId" class="form-control">
-        <option th:each="productType : ${productTypes}" th:value="${productType.id}" th:text="${productType.name}">
-        </option>
+      <select id="productType" name="productTypeId">
+        <option th:each="productType : ${productTypes}" th:value="${productType.id}" th:text="${productType.name}"></option>
       </select>
+    
       <label for="color">Väri:</label>
-      <input type="text" id="color" th:field="*{color}" />
-      <div>
-        <label for="size">Koko:</label>
-        <select name="size" id="size" th:field="*{size}">
-          <option value=""></option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-        </select>
-      </div>
-
+      <input type="text" id="color" name="color" />
+    
+      <label for="size">Koko:</label>
+      <select name="size" id="size">
+        <option value=""></option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+      </select>
+    
       <label for="manufacturer">Valmistaja:</label>
       <select id="manufacturer" name="manufacturerId">
         <option th:each="manu : ${manufacturers}" th:value="${manu.id}" th:text="${manu.name}"></option>
       </select>
+    
       <input type="submit" value="Save" />
     </form>
   </div>
