@@ -8,6 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Product {
@@ -17,8 +18,9 @@ public class Product {
     private Long id;
     @NotBlank(message = "Title is required")
     private String title;
-     @Min(value = 1, message = "Price must be at least 1")
-    private double price;
+    @NotNull(message = "Hinta on pakollinen")
+@Min(value = 1, message = "Hinnan tulee olla vähintään 1")
+    private Double price;
     private String color;
     private String size;
 
@@ -33,7 +35,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String title, double price, ProductType type, String color, String size,
+    public Product(String title, Double price, ProductType type, String color, String size,
             Manufacturer manufacturer) {
         super();
         this.title = title;
@@ -60,11 +62,11 @@ public class Product {
         this.title = title;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

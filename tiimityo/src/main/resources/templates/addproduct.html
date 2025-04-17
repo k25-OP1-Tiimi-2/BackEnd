@@ -12,11 +12,11 @@
     <form action="/saveproduct" method="post">
       <label for="title">Tuotteen nimi:</label>
       <input type="text" id="title" name="title" />
-      <div th:if="${errorTitle}" style="color:red;" th:text="${errorTitle}"></div>
+      <div th:if="${errorTitle}" th:text="${errorTitle}"></div>
     
       <label for="price">Hinta:</label>
-      <input type="text" id="price" name="price" />
-      <div th:if="${errorPrice}" style="color:red;" th:text="${errorPrice}"></div>
+      <input type="number" id="price" name="price" value="0.0"/>
+      <div th:if="${errorPrice}" th:text="${errorPrice}"></div>
     
       <label for="productType">Tuotetyyppi:</label>
       <select id="productType" name="productTypeId">
