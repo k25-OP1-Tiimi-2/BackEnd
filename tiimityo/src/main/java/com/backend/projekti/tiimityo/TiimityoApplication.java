@@ -46,9 +46,9 @@ public class TiimityoApplication {
 			trepository.save(lelu);
 
 			log.info("saving a couple of products");
-			prepository.save(new Product("Talvitakki", 53.90, vaate, "Violetti", "M", rukka));
-			prepository.save(new Product("Sadetakki", 44.90, vaate, "Keltainen", "L", pomppa));
-			prepository.save(new Product("Neule", 21.99, vaate, "Vihreä", "S", feelActive));
+			prepository.save(new Product("Talvitakki", 53.90, vaate, "Violetti", "M", rukka, 11));
+			prepository.save(new Product("Sadetakki", 44.90, vaate, "Keltainen", "L", pomppa, 3));
+			prepository.save(new Product("Neule", 21.99, vaate, "Vihreä", "S", feelActive, 7));
 
 			AppUser user1 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C",
 					"ADMIN");

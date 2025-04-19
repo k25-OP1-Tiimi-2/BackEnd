@@ -19,10 +19,11 @@ public class Product {
     @NotBlank(message = "Title is required")
     private String title;
     @NotNull(message = "Hinta on pakollinen")
-@Min(value = 1, message = "Hinnan tulee olla vähintään 1")
+    @Min(value = 1, message = "Hinnan tulee olla vähintään 1")
     private Double price;
     private String color;
     private String size;
+    private int quantity;
 
     @ManyToOne
     @JoinColumn(name = "manuid")
@@ -36,7 +37,7 @@ public class Product {
     }
 
     public Product(String title, Double price, ProductType type, String color, String size,
-            Manufacturer manufacturer) {
+            Manufacturer manufacturer, int quantity) {
         super();
         this.title = title;
         this.price = price;
@@ -44,6 +45,7 @@ public class Product {
         this.color = color;
         this.size = size;
         this.manufacturer = manufacturer;
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -105,7 +107,16 @@ public class Product {
     @Override
     public String toString() {
         return "Product [id=" + id + ", title=" + title + ", price=" + price + ", type=" + productType
-                + ", color=" + color + ", size=" + size + ", manufacturer=" + manufacturer + "]";
+                + ", color=" + color + ", size=" + size + ", manufacturer=" + manufacturer + ", quantity=" + quantity
+                + "]";
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
 }

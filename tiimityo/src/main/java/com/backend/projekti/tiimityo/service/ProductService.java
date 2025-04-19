@@ -31,7 +31,7 @@ public class ProductService {
     public Product saveProduct(Product product) {
         try {
             return productRepository.save(product);
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("Failed to save product: " + e.getMessage());
         }
     }
@@ -39,16 +39,17 @@ public class ProductService {
     // Update product. Throw error and message if failed.
     public Product updateProduct(Long id, Product updatedProduct) {
         Product existingProduct = productRepository.findById(id).orElseThrow(
-            () -> new RuntimeException("Product not found"));
-            existingProduct.setTitle(updatedProduct.getTitle());
-            existingProduct.setPrice(updatedProduct.getPrice());
-            existingProduct.setProductType(updatedProduct.getProductType());
-            existingProduct.setColor(updatedProduct.getColor());
-            existingProduct.setSize(updatedProduct.getSize());
-            existingProduct.setManufacturer(updatedProduct.getManufacturer());
-            productRepository.save(existingProduct);
-            return existingProduct;
-            
+                () -> new RuntimeException("Product not found"));
+        existingProduct.setTitle(updatedProduct.getTitle());
+        existingProduct.setPrice(updatedProduct.getPrice());
+        existingProduct.setProductType(updatedProduct.getProductType());
+        existingProduct.setColor(updatedProduct.getColor());
+        existingProduct.setSize(updatedProduct.getSize());
+        existingProduct.setManufacturer(updatedProduct.getManufacturer());
+        existingProduct.setQuantity(updatedProduct.getQuantity());
+        productRepository.save(existingProduct);
+        return existingProduct;
+
     }
 
     // Delete product, return true if successful. Throw error and message if failed.

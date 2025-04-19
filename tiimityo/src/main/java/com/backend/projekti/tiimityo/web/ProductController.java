@@ -81,12 +81,12 @@ public class ProductController {
     // Save manufacturer:
     @PostMapping("/savemanufacturer")
     public String saveManufacturer(@Valid Manufacturer manufacturer, BindingResult bindingResult, Model model) {
-    if (bindingResult.hasErrors()) {
-        model.addAttribute("manufacturers", mrepository.findAll());
-        return "addmanufacturer";
-    }
-    mrepository.save(manufacturer);
-    return "redirect:/manufacturerlist";
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("manufacturers", mrepository.findAll());
+            return "addmanufacturer";
+        }
+        mrepository.save(manufacturer);
+        return "redirect:/manufacturerlist";
     }
 
     // Get all manufacturers:
@@ -115,41 +115,49 @@ public class ProductController {
         return "addproduct";
     }
 
+    // List the number of products:
+    @GetMapping("/stocklist")
+    public String listNumberOfProducts(Model model) {
+        model.addAttribute("products", prepository.findAll());
+        return "stocklist";
+    }
+
     // Save product:
     // This method is used to save a new product to the database.
     @PostMapping("/saveproduct")
-public String saveProduct(@RequestParam String title,
-                          @RequestParam double price,
-                          @RequestParam Long productTypeId,
-                          @RequestParam String color,
-                          @RequestParam String size,
-                          @RequestParam Long manufacturerId,
-                          Model model) {
+    public String saveProduct(@RequestParam String title,
+            @RequestParam double price,
+            @RequestParam Long productTypeId,
+            @RequestParam String color,
+            @RequestParam String size,
+            @RequestParam Long manufacturerId,
+            @RequestParam int quantity,
+            Model model) {
 
-    boolean hasErrors = false;
+        boolean hasErrors = false;
 
-    if (title == null || title.trim().isEmpty()) {
-        model.addAttribute("errorTitle", "Tuotteen nimi on pakollinen");
-        hasErrors = true;
+        if (title == null || title.trim().isEmpty()) {
+            model.addAttribute("errorTitle", "Tuotteen nimi on pakollinen");
+            hasErrors = true;
+        }
+        if (price <= 0) {
+            model.addAttribute("errorPrice", "Hinnan on oltava suurempi kuin 0");
+            hasErrors = true;
+        }
+
+        if (hasErrors) {
+            model.addAttribute("productTypes", trepository.findAll());
+            model.addAttribute("manufacturers", mrepository.findAll());
+            return "addproduct";
+        }
+
+        Manufacturer manufacturer = mrepository.findById(manufacturerId).orElse(null);
+        ProductType productType = trepository.findById(productTypeId).orElse(null);
+
+        Product product = new Product(title, price, productType, color, size, manufacturer, quantity);
+        prepository.save(product);
+
+        return "redirect:/productlist";
     }
-    if (price <= 0) {
-        model.addAttribute("errorPrice", "Hinnan on oltava suurempi kuin 0");
-        hasErrors = true;
-    }
-
-    if (hasErrors) {
-        model.addAttribute("productTypes", trepository.findAll());
-        model.addAttribute("manufacturers", mrepository.findAll());
-        return "addproduct";
-    }
-
-    Manufacturer manufacturer = mrepository.findById(manufacturerId).orElse(null);
-    ProductType productType = trepository.findById(productTypeId).orElse(null);
-
-    Product product = new Product(title, price, productType, color, size, manufacturer);
-    prepository.save(product);
-
-    return "redirect:/productlist";
-}
 
 }
