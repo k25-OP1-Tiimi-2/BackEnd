@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 <head>
   <title>Tuotteet</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -34,7 +35,7 @@
         <td th:text="${product.color}"></td>
         <td th:text="${product.size}"></td>
         <td><a th:href="@{/edit/{id}(id=${product.id})}" class="btn btn-success">Muokkaa</a></td>
-        <td><a th:href="@{/delete/{id}(id=${product.id})}"class="btn btn-danger">Poista</a></td>
+        <td><a th:href="@{/delete/{id}(id=${product.id})}" class="btn btn-danger">Poista</a></td>
       </tr>
     </table>
     <a th:href="@{/addproduct}" class="btn btn-success">Lisää tuote</a>
