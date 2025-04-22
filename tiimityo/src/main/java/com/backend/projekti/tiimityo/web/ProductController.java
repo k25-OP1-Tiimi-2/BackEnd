@@ -39,6 +39,11 @@ public class ProductController {
         model.addAttribute("productTypes", trepository.findAll());
         return "productlist";
     }
+    //Frontpage
+    @GetMapping("/frontpage")
+    public String getFrontPage(Model model){
+        return "frontpage";
+    }
 
     // Edit product:
     @RequestMapping("edit/{id}")
