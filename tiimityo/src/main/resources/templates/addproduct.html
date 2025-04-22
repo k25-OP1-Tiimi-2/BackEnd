@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
-  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 <head>
   <meta charset="utf-8" />
   <title>Lisää Tuote</title>
@@ -13,19 +14,20 @@
       <label for="title">Tuotteen nimi:</label>
       <input type="text" id="title" name="title" />
       <div th:if="${errorTitle}" th:text="${errorTitle}"></div>
-    
+
       <label for="price">Hinta:</label>
-      <input type="number" id="price" name="price" value="0.0"/>
+      <input type="number" id="price" name="price" value="0.0" />
       <div th:if="${errorPrice}" th:text="${errorPrice}"></div>
-    
+
       <label for="productType">Tuotetyyppi:</label>
       <select id="productType" name="productTypeId">
-        <option th:each="productType : ${productTypes}" th:value="${productType.id}" th:text="${productType.name}"></option>
+        <option th:each="productType : ${productTypes}" th:value="${productType.id}" th:text="${productType.name}">
+        </option>
       </select>
-    
+
       <label for="color">Väri:</label>
       <input type="text" id="color" name="color" />
-    
+
       <label for="size">Koko:</label>
       <select name="size" id="size">
         <option value=""></option>
@@ -33,12 +35,15 @@
         <option value="M">M</option>
         <option value="L">L</option>
       </select>
-    
+
       <label for="manufacturer">Valmistaja:</label>
       <select id="manufacturer" name="manufacturerId">
         <option th:each="manu : ${manufacturers}" th:value="${manu.id}" th:text="${manu.name}"></option>
       </select>
-    
+
+      <label for="quantity">Määrä:</label>
+      <input type="number" id="quantity" name="quantity" value="1" /><br>
+
       <input type="submit" value="Save" />
     </form>
   </div>
