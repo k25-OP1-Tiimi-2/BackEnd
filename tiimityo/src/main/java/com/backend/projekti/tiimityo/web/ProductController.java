@@ -39,9 +39,10 @@ public class ProductController {
         model.addAttribute("productTypes", trepository.findAll());
         return "productlist";
     }
-    //Frontpage
+
+    // Frontpage
     @GetMapping("/frontpage")
-    public String getFrontPage(Model model){
+    public String getFrontPage(Model model) {
         return "frontpage";
     }
 
@@ -125,6 +126,12 @@ public class ProductController {
     public String listNumberOfProducts(Model model) {
         model.addAttribute("products", prepository.findAll());
         return "stocklist";
+    }
+
+    // Cancel action:
+    @GetMapping("/cancelaction")
+    public String cancelAction(Model model) {
+        return "redirect:/productlist";
     }
 
     // Save product:

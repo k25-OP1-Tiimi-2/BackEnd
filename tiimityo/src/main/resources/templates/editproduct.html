@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 <head>
     <meta charset="utf-8">
     <title>Muokkaa tuotetta</title>
@@ -50,6 +51,7 @@
 
         <input type="submit" class="btn btn-success" value="Tallenna"></input>
     </form>
+    <br> <a th:href="@{/cancelaction}" class="btn btn-danger">Peruuta</a>
 </body>
 
 </html>
