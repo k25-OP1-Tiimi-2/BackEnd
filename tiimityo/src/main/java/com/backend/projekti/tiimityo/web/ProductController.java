@@ -102,7 +102,7 @@ public class ProductController {
         return "manufacturerlist";
     }
 
-    // Go to manufacturer's page:
+    // See manufacturer's products:
     @GetMapping("/manufacturer/{id}")
     public String getManufacturer(@PathVariable Long id, Model model) {
         Manufacturer manufacturer = mrepository.findById(id).orElse(null);

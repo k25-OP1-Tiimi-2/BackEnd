@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 <head>
     <title>Valmistaja</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,7 +14,7 @@
         <div>
             <h1>Valmistajan <a th:text="${manufacturer.name}"></a> tuotteet</h1>
         </div>
-        <table>
+        <table class="table table-striped">
             <tr>
                 <th>Tuote</th>
                 <th>Hinta</th>
