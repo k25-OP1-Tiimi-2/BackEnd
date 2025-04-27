@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.backend.projekti.tiimityo.domain.Manufacturer;
 import com.backend.projekti.tiimityo.domain.ManufacturerRepository;
@@ -79,7 +80,16 @@ public class ProductController {
 
     // Delete manufacturer:
     @GetMapping("/deletemanufacturer/{id}")
-    public String deleteManufacturer(@PathVariable Long id) {
+    public String deleteManufacturer(@PathVariable Long id, RedirectAttributes redirAttrs) {
+        Manufacturer manufacturer = mrepository.findById(id).orElseThrow(
+            () -> new RuntimeException("Manufacturer not found"));
+        
+        if(manufacturer.getProducts().size() > 0) {
+            redirAttrs.addFlashAttribute("error", "Valmistajalla tuotteita järjestelmässä. Poistaminen ei mahdollista.");
+
+            return "redirect:/manufacturerlist";
+        }
+        
         mrepository.deleteById(id);
         return "redirect:/manufacturerlist";
     }
