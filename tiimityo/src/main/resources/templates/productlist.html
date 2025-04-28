@@ -1,47 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/bootstrap.min.css"
+    th:href="@{/css/bootstrap.min.css}"
+  />
 
-<head>
-  <title>Tuotteet</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link type="text/css" rel="stylesheet" />
-</head>
+  <head>
+    <title>Tuotteet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link type="text/css" rel="stylesheet" />
+  </head>
 
-<body>
-  <div>
+  <body>
     <div>
-      <h1>Tuotteet</h1>
+      <div>
+        <h1>Tuotteet</h1>
+      </div>
+      <table class="table table-striped">
+        <tr>
+          <th>Tuote</th>
+          <th>Valmistaja</th>
+          <th>Hinta</th>
+          <th>Tyyppi</th>
+          <th>Väri</th>
+          <th>Koko</th>
+          <th>Muokkaa</th>
+          <th>Poista</th>
+        </tr>
+        <tr th:each="product : ${products}">
+          <td th:text="${product.title}"></td>
+
+          <td th:text="${product.manufacturer.name}"></td>
+          <td th:text="${product.price}"></td>
+          <td th:text="${product.productType.name}"></td>
+          <td th:text="${product.color}"></td>
+          <td th:text="${product.size}"></td>
+          <td>
+            <a th:href="@{/edit/{id}(id=${product.id})}" class="btn btn-success"
+              >Muokkaa</a
+            >
+          </td>
+          <td>
+            <a
+              th:href="@{/delete/{id}(id=${product.id})}"
+              onclick="return confirm('Are you sure you want to delete this product?')"
+              class="btn btn-danger"
+              >Poista</a
+            >
+          </td>
+        </tr>
+      </table>
+      <a th:href="@{/addproduct}" class="btn btn-success">Lisää tuote</a>
+      <a th:href="@{/stocklist}" class="btn btn-success"
+        >Tuotteiden varastosaldo</a
+      >
+      <a th:href="@{/manufacturerlist}" class="btn btn-success">Valmistajat</a>
     </div>
-    <table class="table table-striped">
-      <tr>
-        <th>Tuote</th>
-        <th>Valmistaja</th>
-        <th>Hinta</th>
-        <th>Tyyppi</th>
-        <th>Väri</th>
-        <th>Koko</th>
-        <th>Muokkaa</th>
-        <th>Poista</th>
-      </tr>
-      <tr th:each="product : ${products}">
-        <td th:text="${product.title}"></td>
-
-        <td th:text="${product.manufacturer.name}">
-        </td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.productType.name}"></td>
-        <td th:text="${product.color}"></td>
-        <td th:text="${product.size}"></td>
-        <td><a th:href="@{/edit/{id}(id=${product.id})}" class="btn btn-success">Muokkaa</a></td>
-        <td><a th:href="@{/delete/{id}(id=${product.id})}" class="btn btn-danger">Poista</a></td>
-      </tr>
-    </table>
-    <a th:href="@{/addproduct}" class="btn btn-success">Lisää tuote</a>
-    <a th:href="@{/stocklist}" class="btn btn-success">Tuotteiden varastosaldo</a>
-    <a th:href="@{/manufacturerlist}" class="btn btn-success">Valmistajat</a>
-  </div>
-</body>
-
+  </body>
 </html>
