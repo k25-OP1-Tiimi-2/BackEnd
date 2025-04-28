@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found</title>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/css/bootstrap.min.css"
+      th:href="@{/css/bootstrap.min.css}"
+    />
+  </head>
+  <body>
+    <h1>Page not found</h1>
+    <p style="font-size: large">
+      Oops! The page you're looking for does not exist.
+    </p>
+    <a th:href="@{/frontpage}" class="btn btn-success"
+      >Back to the Front page</a
+    >
+  </body>
+</html>

@@ -82,14 +82,14 @@ public class ProductController {
     @GetMapping("/deletemanufacturer/{id}")
     public String deleteManufacturer(@PathVariable Long id, RedirectAttributes redirAttrs) {
         Manufacturer manufacturer = mrepository.findById(id).orElseThrow(
-            () -> new RuntimeException("Manufacturer not found"));
-        
-        if(manufacturer.getProducts().size() > 0) {
+                () -> new RuntimeException("Manufacturer not found"));
+
+        if (manufacturer.getProducts().size() > 0) {
             redirAttrs.addFlashAttribute("error", "Valmistajalla tuotteita järjestelmässä. Poistaminen ei mahdollista.");
 
             return "redirect:/manufacturerlist";
         }
-        
+
         mrepository.deleteById(id);
         return "redirect:/manufacturerlist";
     }
