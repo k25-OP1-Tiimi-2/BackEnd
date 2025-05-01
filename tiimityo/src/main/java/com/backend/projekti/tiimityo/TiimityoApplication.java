@@ -2,19 +2,8 @@ package com.backend.projekti.tiimityo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import com.backend.projekti.tiimityo.domain.AppUser;
-import com.backend.projekti.tiimityo.domain.AppUserRepository;
-import com.backend.projekti.tiimityo.domain.Manufacturer;
-import com.backend.projekti.tiimityo.domain.ManufacturerRepository;
-import com.backend.projekti.tiimityo.domain.Product;
-import com.backend.projekti.tiimityo.domain.ProductRepository;
-import com.backend.projekti.tiimityo.domain.ProductType;
-import com.backend.projekti.tiimityo.domain.ProductTypeRepository;
 
 @SpringBootApplication
 public class TiimityoApplication {
@@ -25,6 +14,7 @@ public class TiimityoApplication {
         SpringApplication.run(TiimityoApplication.class, args);
     }
 
+    /* 
     @Bean
     public CommandLineRunner productDemo(ProductRepository prepository, ManufacturerRepository mrepository,
             AppUserRepository appUserRepository, ProductTypeRepository trepository) {
@@ -55,5 +45,5 @@ public class TiimityoApplication {
             appUserRepository.save(user1);
         };
     }
-
+     */
 }

@@ -20,6 +20,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig {
+
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -28,16 +29,17 @@ public class WebSecurityConfig {
         http
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(antMatcher("/css/**")).permitAll() // Enable css when logged out
-                        .requestMatchers(antMatcher("/rest/**")).permitAll()
-                        .anyRequest().authenticated())
-                        .headers(headers -> headers.frameOptions(frameOptions -> frameOptions
-                        .disable())) // for h2console
+                .requestMatchers(antMatcher("/css/**")).permitAll() // Enable css when logged out
+                .requestMatchers(antMatcher("/rest/**")).permitAll()
+                .requestMatchers("/resetDB**").permitAll()
+                .anyRequest().authenticated())
+                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions
+                .disable())) // for h2console
                 .formLogin(formlogin -> formlogin
-                        .defaultSuccessUrl("/frontpage", true)
-                        .permitAll())
+                .defaultSuccessUrl("/frontpage", true)
+                .permitAll())
                 .logout(logout -> logout
-                        .permitAll())
+                .permitAll())
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }

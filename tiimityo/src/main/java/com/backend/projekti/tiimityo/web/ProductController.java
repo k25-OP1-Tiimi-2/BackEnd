@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.backend.projekti.tiimityo.domain.AppUser;
+import com.backend.projekti.tiimityo.domain.AppUserRepository;
 import com.backend.projekti.tiimityo.domain.Manufacturer;
 import com.backend.projekti.tiimityo.domain.ManufacturerRepository;
 import com.backend.projekti.tiimityo.domain.Product;
@@ -31,6 +33,8 @@ public class ProductController {
     private ManufacturerRepository mrepository;
     @Autowired
     private ProductTypeRepository trepository;
+    @Autowired
+    private AppUserRepository appUserRepository;
 
     // Get all products:
     @GetMapping("/productlist")
@@ -182,4 +186,43 @@ public class ProductController {
         return "redirect:/productlist";
     }
 
+    @GetMapping(value = {"resetDB"})
+
+    public String resetDB() {
+
+        // Deletes all products and manufacturers from the database
+        prepository.deleteAll();
+
+        mrepository.deleteAll();
+
+        // test data
+        Manufacturer rukka = new Manufacturer("Rukka");
+        mrepository.save(rukka);
+        Manufacturer pomppa = new Manufacturer("Pomppa");
+        mrepository.save(pomppa);
+        Manufacturer feelActive = new Manufacturer("Feel Active");
+        mrepository.save(feelActive);
+
+        ProductType vaate = new ProductType("Vaate");
+        trepository.save(vaate);
+        ProductType ruoka = new ProductType("Ruoka");
+        trepository.save(ruoka);
+        ProductType lelu = new ProductType("Lelu");
+        trepository.save(lelu);
+
+        prepository.save(new Product("Talvitakki", 53.90, vaate, "Violetti", "M", rukka, 11));
+        prepository.save(new Product("Sadetakki", 44.90, vaate, "Keltainen", "L", pomppa, 3));
+        prepository.save(new Product("Neule", 21.99, vaate, "Vihreä", "S", feelActive, 7));
+
+        AppUser existingUser = appUserRepository.findByUsername("adminn");
+
+        if (existingUser != null) {
+            return "redirect:/frontpage";
+        }
+
+        AppUser user1 = new AppUser("adminn", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C",
+                "ADMIN");
+        appUserRepository.save(user1);
+        return "redirect:/frontpage";
+    }
 }
