@@ -19,6 +19,7 @@
                 <th>Tuote</th>
                 <th>Valmistaja</th>
                 <th>Määrä</th>
+                <th>Päivitä määrä</th>
             </tr>
             <tr th:each="product : ${products}">
                 <td th:text="${product.title}"></td>
@@ -26,6 +27,9 @@
                 <td th:text="${product.manufacturer.name}">
                 </td>
                 <td th:text="${product.quantity}"></td>
+                <td>
+                    <a th:href="@{/updatequantity/{id}(id=${product.id})}" class="btn btn-success">Päivitä määrä</a>
+                </td>
             </tr>
         </table>
         <a th:href="@{/frontpage}">Etusivu</a>

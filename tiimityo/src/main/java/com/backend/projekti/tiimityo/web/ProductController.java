@@ -89,7 +89,8 @@ public class ProductController {
                 () -> new RuntimeException("Manufacturer not found"));
 
         if (manufacturer.getProducts().size() > 0) {
-            redirAttrs.addFlashAttribute("error", "Valmistajalla tuotteita järjestelmässä. Poistaminen ei mahdollista.");
+            redirAttrs.addFlashAttribute("error",
+                    "Valmistajalla tuotteita järjestelmässä. Poistaminen ei mahdollista.");
 
             return "redirect:/manufacturerlist";
         }
@@ -142,10 +143,40 @@ public class ProductController {
         return "stocklist";
     }
 
-    // Cancel action:
-    @GetMapping("/cancelaction")
-    public String cancelAction(Model model) {
+    // Update quantity in stocklist:
+    @RequestMapping("updatequantity/{id}")
+    public String updateQuantity(@PathVariable("id") Long productId, Model model) {
+        model.addAttribute("product", prepository.findById(productId));
+        return "stocklist_updatequantity";
+    }
+
+    // Saves the product in stocklist:
+    @PostMapping("/savequantity")
+    public String saveQuantity(Product product) {
+        Product existing = prepository.findById(product.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Virheellinen ID"));
+        existing.setQuantity(product.getQuantity());
+        prepository.save(existing);
+
+        return "redirect:/stocklist";
+    }
+
+    // Cancel product action:
+    @GetMapping("/cancelproductaction")
+    public String cancelProductAction(Model model) {
         return "redirect:/productlist";
+    }
+
+    // Cancel manufacturer action:
+    @GetMapping("/cancelmanuaction")
+    public String cancelManuAction(Model model) {
+        return "redirect:/manufacturerlist";
+    }
+
+    // Cancel stocklist action:
+    @GetMapping("/cancelstockaction")
+    public String cancelStockAction(Model model) {
+        return "redirect:/stocklist";
     }
 
     // Save product:
@@ -186,7 +217,7 @@ public class ProductController {
         return "redirect:/productlist";
     }
 
-    @GetMapping(value = {"resetDB"})
+    @GetMapping(value = { "resetDB" })
 
     public String resetDB() {
 

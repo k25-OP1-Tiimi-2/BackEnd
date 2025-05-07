@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 <head>
     <meta charset="utf-8">
     <title>Lisää valmistaja</title>
@@ -13,21 +14,12 @@
             <label for="name">Nimi:</label>
             <input type="text" id="name" th:field="*{name}" />
             <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
-            
-            <input type="submit" value="Tallenna" />
+
+            <input type="submit" value="Tallenna" /><br>
+
+            <br> <a th:href="@{/cancelmanuaction}" class="btn btn-danger">Peruuta</a>
         </form>
     </div>
 </body>
 
 </html>
-
-<!-- Controlleriin jotenki näin sit:
-
- @RequestMapping("/addmanufacturer")
- public String addManu(Model manu) {
- manu.addAttribute("manufacturer", new Manufacturer());
- manu.addAttribute("manufacturers", mrepository.findAll());
- return "addmanufacturer";
-
- }
- -->
