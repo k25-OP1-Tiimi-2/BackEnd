@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lisää Asiakas</title>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/css/bootstrap.min.css"
+      th:href="@{/css/bootstrap.min.css}"
+    />
+  </head>
+
+  <body class="container mt-4">
+    <h1>Lisää Asiakas</h1>
+    <div>
+      <form th:action="@{/savecustomer}"th:object="${customer}" method="post">
+        <div class="mb-3">
+          <label for="username" class="form-label">Käyttäjänimi:</label>
+          <input type="text" id="username" th:field="*{username}" class="form-control" required />
+          <div class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Sähköposti:</label>
+          <input type="email" id="email" th:field="*{email}" class="form-control" required />
+          <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+
+        <input type="submit" value="Tallenna" class="btn btn-primary" />
+        <a th:href="@{/customerlist}" class="btn btn-danger ms-2">Peruuta</a>
+      </form>
+    </div>
+  </body>
+</html>

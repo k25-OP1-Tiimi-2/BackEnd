@@ -14,7 +14,7 @@ public class TiimityoApplication {
         SpringApplication.run(TiimityoApplication.class, args);
     }
 
-    /* 
+    /*
     @Bean
     public CommandLineRunner productDemo(ProductRepository prepository, ManufacturerRepository mrepository,
             AppUserRepository appUserRepository, ProductTypeRepository trepository) {
@@ -43,7 +43,9 @@ public class TiimityoApplication {
             AppUser user1 = new AppUser("adminn", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C",
                     "ADMIN");
             appUserRepository.save(user1);
+
+            
         };
     }
-     */
+    */
 }

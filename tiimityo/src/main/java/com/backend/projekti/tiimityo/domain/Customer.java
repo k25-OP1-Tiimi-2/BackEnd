@@ -20,6 +20,11 @@ public class Customer {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    
+
+    public Customer() {
+    }
+
     public Customer(Long id, String username, String email) {
         this.id = id;
         this.username = username;

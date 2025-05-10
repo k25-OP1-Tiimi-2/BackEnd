@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Asiakkaat</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/css/bootstrap.min.css"
+      th:href="@{/css/bootstrap.min.css}"
+    />
+  </head>
+
+  <body>
+    <div class="container mt-4">
+      <div class="mb-3">
+        <h1>Asiakkaat</h1>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Käyttäjänimi</th>
+            <th>Sähköposti</th>
+            <th>Muokkaa</th>
+            <th>Poista</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="customer : ${customers}">
+            <td th:text="${customer.username}"></td>
+            <td th:text="${customer.email}"></td>
+            <td>
+              <a
+                th:href="@{/editcustomer/{id}(id=${customer.id})}"
+                class="btn btn-success"
+              >
+                Muokkaa
+              </a>
+            </td>
+            <td>
+              <a
+                th:href="@{/deletecustomer/{id}(id=${customer.id})}"
+                class="btn btn-danger"
+                onclick="return confirm('Haluatko varmasti poistaa tämän asiakkaan?');"
+              >
+                Poista
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a th:href="@{/addcustomer}" class="btn btn-primary">Lisää asiakas</a>
+      <a th:href="@{/frontpage}" class="btn btn-secondary">Etusivu</a>
+    </div>
+  </body>
+</html>
